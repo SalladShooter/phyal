@@ -4,8 +4,8 @@ class Tag:
 
     def __init__(self, name, text=''):
         self.name = name
-        self.attributes = []
-        self.children = []
+        self.attributes = attributes
+        self.children = children
         self.text = text
 
     def attribute(self, key, value):
@@ -34,7 +34,6 @@ class Tags:
     class address(Tag):
         def __init__(self, text=''):
             super().__init__('address', text)
-
     
     class article(Tag):
         def __init__(self, text=''):
