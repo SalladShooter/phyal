@@ -10,8 +10,7 @@ def index(request):
 
     html_content = [
         css_link, js_link,
-        str(Tag('p', 'Hello World')),
-        str(Tag('a', 'Link', href='https://google.com'))
+        str(Tag('p', 'Hello World'))
     ]
     
     while True:
