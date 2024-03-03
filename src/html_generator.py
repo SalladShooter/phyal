@@ -1,27 +1,21 @@
 # Copyright (c) 2024 SalladShooter
 
 class Tag:
-
-    def __init__(self, name, text=''):
+    
+    def __init__(self, name, text='', children=None, **attributes):
         self.name = name
-        self.attributes = attributes
-        self.children = children
         self.text = text
-
+        self.children = children if children is not None else []
+        self.attributes = attributes
+        
     def attribute(self, key, value):
-        self.attributes.append((key, value))
-        return self
-
-    def id(self, value):
-        self.attributes.append(('id', value))
-        return self
-
+        self.attributes[key] = value
+        
     def add_children(self, *tags):
         self.children.extend(tags)
-        return self
-
+        
     def __str__(self):
-        attrs = ' '.join([f'{k}="{v}"' for k, v in self.attributes])
+        attrs = ' '.join([f'{k}="{v}"' for k, v in self.attributes.items()])
         children = ''.join(map(str, self.children))
         return f'<{self.name} {attrs}>{self.text}{children}</{self.name}>'
 

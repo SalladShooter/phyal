@@ -26,7 +26,9 @@ and now you can add links to other files like `JavaScript` and `CSS` ->
 css_link = '<link rel="stylesheet" type="text/css" href="/static/style.css">'
 js_link = '<script src="/static/script.js"></script>'
 
-html_content = [css_link, js_link]
+html_content = [
+    css_link, js_link
+]
 ```
 
 Outside of your route you need to allow the file to be ran ->
@@ -45,13 +47,15 @@ VIAL components go hand in hand with HTML elements but are written in the Python
 
 You can use an element by setting up an advised `html_content` list ->
 ```py
-html_content = []
-html_content.append(str(Tags.)) # Element
+html_content = [
+    css_link, js_link,
+    str(Tag()) # Element
+]
 ```
 
 you can then add your element (currently select few, but most/all elements will be added eventually) to the line, for example the paragraph element or `<p>` ->
 ```py
-html_content.append(str(Tags.p('Hello World')))
+str(Tag('p', 'Hello World'))
 ```
 
 
@@ -60,17 +64,21 @@ html_content.append(str(Tags.p('Hello World')))
 
 Then you can add `attributes`, things like `HREF`'s `SRC`'s `ALT`'s would fall in this category. You would add `.attribute(# attribute())` to your line, for example an `<a>` tag ->
 ```py
-html_content.append(str(Tags.a(Link').attributes('https://google.com')))
+str(Tag('a', 'Link', href='https://google.com'))
 ```
 
 You can use the VIAL framework along side things like `JavaScript` and `CSS` and add ID's like so `.id('')`, for example with a `<p>` tag ->
 ```py
-html_content.append(str(Tags.p('Hello World').id('id-p')))
+str(Tag('p', 'Hello World', id='my_id'))
 ```
 
 You can also add children to the elements in a hireachy system like HTML like so `.add_children(Tags.) # Element`, for example a `<p>` tag ->
 ```py
-html_content(str(Tags.p('Hello World').add_children(Tags.div())))
+str(Tag('p', 'Hello World', children=[
+    Tag('div', children=[
+        # Add more children here if needed
+    ])
+]))
 ```
 
 ___

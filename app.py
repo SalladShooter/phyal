@@ -8,8 +8,11 @@ def index(request):
     css_link = '<link rel="stylesheet" type="text/css" href="/static/style.css">'
     js_link = '<script src="/static/script.js"></script>'
 
-    html_content = [css_link, js_link]
-    html_content.append(str(Tags.p('Hello, World!')))
+    html_content = [
+        css_link, js_link,
+        str(Tag('p', 'Hello World')),
+        str(Tag('a', 'Link', href='https://google.com'))
+    ]
     
     while True:
         app.reload_content(html_content)
