@@ -1,3 +1,5 @@
+# Copyright (c) 2024 SalladShooter
+
 from werkzeug.exceptions import HTTPException, NotFound
 from werkzeug.middleware.shared_data import SharedDataMiddleware
 from werkzeug.routing import Map, Rule
