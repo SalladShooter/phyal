@@ -1,4 +1,4 @@
-from src.framework import App, Response, Tag, Tags
+from phyal import *
 
 app = App()
 

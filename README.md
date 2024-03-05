@@ -9,7 +9,11 @@ PHYAL is easily used with the template, otherwise it requires some setup.
 So first you have to import the necessary files ->
 
 ```py
-from src.framework import App, Response, Tag, Tags
+import phyal
+```
+and in the shell
+```shell script
+pip install phyal
 ```
 
 Then you will have to define a route/source, for example ->

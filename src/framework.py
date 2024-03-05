@@ -1,11 +1,8 @@
-# Copyright (c) 2024 SalladShooter
-
 from werkzeug.exceptions import HTTPException, NotFound
 from werkzeug.middleware.shared_data import SharedDataMiddleware
 from werkzeug.routing import Map, Rule
 from werkzeug.serving import run_simple
 from werkzeug.wrappers import Request, Response
-
 
 class App:
 
@@ -46,20 +43,26 @@ class App:
 
 class Tag:
 
-    def __init__(self, name, text='', children=None, **attributes):
+    def __init__(self, name, text=''):
         self.name = name
+        self.attributes = []
+        self.children = []
         self.text = text
-        self.children = children if children is not None else []
-        self.attributes = attributes
 
     def attribute(self, key, value):
-        self.attributes[key] = value
+        self.attributes.append((key, value))
+        return self
+
+    def id(self, value):
+        self.attributes.append(('id', value))
+        return self
 
     def add_children(self, *tags):
         self.children.extend(tags)
+        return self
 
     def __str__(self):
-        attrs = ' '.join([f'{k}="{v}"' for k, v in self.attributes.items()])
+        attrs = ' '.join([f'{k}="{v}"' for k, v in self.attributes])
         children = ''.join(map(str, self.children))
         return f'<{self.name} {attrs}>{self.text}{children}</{self.name}>'
 
@@ -72,6 +75,7 @@ class Tags:
     class address(Tag):
         def __init__(self, text=''):
             super().__init__('address', text)
+
 
     class article(Tag):
         def __init__(self, text=''):
