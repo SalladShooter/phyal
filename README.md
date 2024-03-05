@@ -11,8 +11,7 @@ VIAL is easily used with the template, otherwise it requires some setup.
 So first you have to import the necessary files ->
 
 ```py
-from src.framework import App, Response
-from src.html_generator import Tag, Tags
+from src.framework import App, Response, Tag, Tags
 ```
 
 Then you will have to define a route/source, for example ->

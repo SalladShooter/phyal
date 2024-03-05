@@ -1,5 +1,4 @@
-from src.framework import App, Response
-from src.html_generator import Tag, Tags
+from src.framework import App, Response, Tag, Tags
 
 app = App()
 
