@@ -1,6 +1,6 @@
 # VIAL
 
-![Static Badge](https://img.shields.io/badge/Contributors-2-green)
+![Static Badge](https://img.shields.io/badge/Contributors-2-blue)
 
 A simple to use Framework with a Python syntax that can replace HTML in a comfortable and easy way.
 
