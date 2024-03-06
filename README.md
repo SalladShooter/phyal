@@ -1,5 +1,7 @@
 # PHYAL
 
+[![Static Badge](https://img.shields.io/badge/Contributors-2-blue)](https://img.shields.io/badge/Contributor-2-4?style=flat&color=blue)
+
 A simple to use Framework with a Python syntax that can replace HTML in a comfortable and easy way.
 
 ___
