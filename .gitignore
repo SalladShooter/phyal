@@ -1,0 +1,12 @@
+.config
+.build
+.cache
+.upm
+.tmp
+.git
+replit.nix
+.replit
+setup.py
+__pycache__
+src/phyal/__pycache__
+.github
