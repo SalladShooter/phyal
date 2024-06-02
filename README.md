@@ -1,4 +1,4 @@
-# PHYAL
+# phyal
 
 [![Static Badge](https://img.shields.io/badge/Contributors-2-blue)](https://img.shields.io/badge/Contributor-2-4?style=flat&color=blue)
 
@@ -6,7 +6,7 @@ A simple to use Framework with a Python syntax that can replace HTML in a comfor
 
 ___
 
-PHYAL is easily used with the template, otherwise it requires some setup.
+phyal is easily used with the template, otherwise it requires some setup.
 
 So first you have to import the necessary files ->
 
@@ -42,13 +42,13 @@ if __name__ == '__main__':
     app.run('0.0.0.0', 5000)
 ```
 
-Now you can code away using PHYAL in your route.
+Now you can code away using phyal in your route.
 
 ___
 
 ### Syntax
 
-PHYAL components go hand in hand with HTML elements but are written in the Python programming language.
+phyal components go hand in hand with HTML elements but are written in the Python programming language.
 
 You can use an element by setting up an advised `html_content` list ->
 ```py
@@ -72,7 +72,7 @@ Then you can add `attributes`, things like `HREF`'s `SRC`'s `ALT`'s would fall i
 str(Tag('a', 'Link', href='https://google.com'))
 ```
 
-You can use the PHYAL framework along side things like `JavaScript` and `CSS` and add ID's like so `.id('')`, for example with a `<p>` tag ->
+You can use the phyal framework along side things like `JavaScript` and `CSS` and add ID's like so `.id('')`, for example with a `<p>` tag ->
 ```py
 str(Tag('p', 'Hello World', id='my_id'))
 ```
@@ -90,7 +90,7 @@ ___
 
 ### Running
 
-Once you have written out your code with PHYAL you can either write it where it runs once or runs continuously (harder on preformance, but works with JS better)
+Once you have written out your code with phyal you can either write it where it runs once or runs continuously (harder on preformance, but works with JS better)
 
 #### Single Use
 
