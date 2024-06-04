@@ -45,16 +45,16 @@ class Tag:
 
     def __init__(self, name, text=''):
         self.name = name
-        self.attributes = []
+        self.attributes = {}
         self.children = []
         self.text = text
 
     def attribute(self, key, value):
-        self.attributes.append((key, value))
+        self.attributes[key] = value
         return self
 
     def id(self, value):
-        self.attributes.append(('id', value))
+        self.attributes['id'] = value
         return self
 
     def add_children(self, *tags):
@@ -62,7 +62,7 @@ class Tag:
         return self
 
     def __str__(self):
-        attrs = ' '.join([f'{k}="{v}"' for k, v in self.attributes])
+        attrs = ' '.join([f'{key}="{value}"' for key, value in self.attributes.items()])
         children = ''.join(map(str, self.children))
         return f'<{self.name} {attrs}>{self.text}{children}</{self.name}>'
 
