@@ -1,1 +1,2 @@
 werkzeug
+typing_extensions
