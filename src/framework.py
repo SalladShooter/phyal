@@ -45,19 +45,19 @@ class App:
 
 class Tag:
 
-    def __init__(self:Self, name:str, text:str='', **attributes:str) -> None:
+    def __init__(self:Self, name:str, text:str='', **attrutes:str) -> None:
         self.name:str = name
-        self.attributes:dict[str, str] = attributes
+        self.attrutes:dict[str, str] = attrutes
 
         self.children:list[Tag] = []
         self.text:str = text
 
-    def attrib(self:Self, key:str, value:str) -> Self:
-        self.attributes[key] = value
+    def attr(self:Self, key:str, value:str) -> Self:
+        self.attrutes[key] = value
         return self
 
     def id(self:Self, value:str) -> Self:
-        self.attributes['id'] = value
+        self.attrutes['id'] = value
         return self
 
     def child(self:Self, *tags:Self) -> Self:
@@ -65,7 +65,7 @@ class Tag:
         return self
 
     def __str__(self:Self) -> str:
-        attrs:str = ' '.join([f'{key}="{value}"' for key, value in self.attributes.items()])
+        attrs:str = ' '.join([f'{key}="{value}"' for key, value in self.attrutes.items()])
         children:str = ''.join(map(str, self.children))
         return f'<{self.name} {attrs}>{self.text}{children}</{self.name}>'
 
@@ -76,16 +76,16 @@ class Tags:
     class link(Tag):
         def __init__(self:Self, href:str='', rel:str='') -> None:
             super().__init__('link')
-            self.attrib('href', href)
-            self.attrib('rel', rel)
+            self.attr('href', href)
+            self.attr('rel', rel)
     
     class meta(Tag):
         def __init__(self:Self, text:str='', name:str='', httpequiv:str='', charset:str='', itemprop:str='') -> None:
             super().__init__('meta', text)
-            self.attrib('name', name)
-            self.attrib('http-equiv', httpequiv)
-            self.attrib('charset', charset)
-            self.attrib('itemprop', itemprop)
+            self.attr('name', name)
+            self.attr('http-equiv', httpequiv)
+            self.attr('charset', charset)
+            self.attr('itemprop', itemprop)
             
     class style(Tag):
         def __init__(self:Self, text:str='') -> None:
@@ -168,7 +168,7 @@ class Tags:
     class blockquote(Tag):
         def __init__(self:Self, text:str='', cite:str='') -> None:
             super().__init__('blockquote', text)
-            self:self.attrib('cite', cite)
+            self:self.attr('cite', cite)
 
     class dd(Tag):
         def __init__(self:Self, text:str='') -> None:
@@ -227,7 +227,7 @@ class Tags:
     class a(Tag):
         def __init__(self:Self, text:str='', href:str='#') -> None:
             super().__init__('a', text)
-            self.attrib('href', href)
+            self.attr('href', href)
     
     class abbr(Tag):
         def __init__(self:Self, text:str='') -> None:
@@ -260,7 +260,7 @@ class Tags:
     class data(Tag):
         def __init__(self:Self, text:str='', value:str='') -> None:
             super().__init__('div', text)
-            self.attrib('value', value)
+            self.attr('value', value)
     
     class dfn(Tag):
         def __init__(self:Self, text:str='') -> None:
@@ -285,7 +285,7 @@ class Tags:
     class q(Tag):
         def __init__(self:Self, text:str='', cite:str='') -> None:
             super().__init__('q', text)
-            self.attribtute('cite', cite)
+            self.attrtute('cite', cite)
 
     class span(Tag):
         def __init__(self:Self, text:str='') -> None:
@@ -294,8 +294,8 @@ class Tags:
     class img(Tag):
         def __init__(self:Self, src:str='', alt:str='') -> None:
             super().__init__('img')
-            self.attrib('src', src)
-            self.attrib('alt', alt)
+            self.attr('src', src)
+            self.attr('alt', alt)
 
     class table(Tag):
         def __init__(self:Self, text:str='') -> None:
@@ -320,8 +320,8 @@ class Tags:
     class input(Tag):
         def __init__(self:Self, type:str='', value:str='') -> None:
             super().__init__('input')
-            self.attrib('type', type)
-            self.attrib('value', value)
+            self.attr('type', type)
+            self.attr('value', value)
 
     class button(Tag):
         def __init__(self:Self, text:str='') -> None:
