@@ -45,12 +45,9 @@ class App:
 
 class Tag:
 
-    def __init__(self: Self, name: str, text:str='', **kwargs: str) -> None:
+    def __init__(self: Self, name: str, text:str='', **attributes: str) -> None:
         self.name: str = name
-        self.attributes: dict[str, str] = {}
-
-        for attrib, value in kwargs.items():
-            self.attributes[attrib] = value
+        self.attributes: dict[str, str] = attributes
 
         self.children: list[Tag] = []
         self.text: str = text
