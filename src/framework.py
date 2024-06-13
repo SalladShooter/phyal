@@ -45,12 +45,11 @@ class App:
 
 class Tag:
 
-    def __init__(self:Self, name:str, text:str='', **attrutes:str) -> None:
-        self.name:str = name
-        self.attrutes:dict[str, str] = attrutes
-
-        self.children:list[Tag] = []
-        self.text:str = text
+    def __init__(self: Self, name: str, text:str='') -> None:
+        self.name: str = name
+        self.attributes: dict[str, str] = {}
+        self.children: list[Tag] = []
+        self.text: str = text
 
     def attr(self:Self, key:str, value:str) -> Self:
         self.attrutes[key] = value
@@ -326,3 +325,4 @@ class Tags:
     class button(Tag):
         def __init__(self:Self, text:str='') -> None:
             super().__init__('button', text)
+
