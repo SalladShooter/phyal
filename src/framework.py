@@ -7,7 +7,6 @@ from werkzeug.serving import run_simple
 from werkzeug.wrappers import Request, Response
 
 class App:
-
     def __init__(self:Self) -> None:
         self.url_map:Map = Map()
         self.view_functions:dict = {}
@@ -45,18 +44,18 @@ class App:
 
 class Tag:
 
-    def __init__(self: Self, name: str, text:str='') -> None:
+    def __init__(self: Self, name: str, text:str='', **attributes:str) -> None:
         self.name: str = name
-        self.attributes: dict[str, str] = {}
+        self.attributes: dict[str, str] = attributes
         self.children: list[Tag] = []
         self.text: str = text
 
     def attr(self:Self, key:str, value:str) -> Self:
-        self.attrutes[key] = value
+        self.attributes[key] = value
         return self
 
     def id(self:Self, value:str) -> Self:
-        self.attrutes['id'] = value
+        self.attributes['id'] = value
         return self
 
     def child(self:Self, *tags:Self) -> Self:
@@ -64,7 +63,7 @@ class Tag:
         return self
 
     def __str__(self:Self) -> str:
-        attrs:str = ' '.join([f'{key}="{value}"' for key, value in self.attrutes.items()])
+        attrs:str = ' '.join([f'{key}="{value}"' for key, value in self.attributes.items()])
         children:str = ''.join(map(str, self.children))
         return f'<{self.name} {attrs}>{self.text}{children}</{self.name}>'
 
@@ -72,8 +71,14 @@ class Tags:
 
     # Document metadata
 
+    class base(Tag):
+        pass
+
+    class head(Tag):
+        pass
+
     class link(Tag):
-        def __init__(self:Self, href:str='', rel:str='') -> None:
+        def __init__(self:Self, href:str='', rel:str='') -> None: # More attributes required
             super().__init__('link')
             self.attr('href', href)
             self.attr('rel', rel)
@@ -89,6 +94,11 @@ class Tags:
     class style(Tag):
         def __init__(self:Self, text:str='') -> None:
             super().__init__('style', text)
+
+    class title(Tag):
+        def __init__(self:Self, text:str='') -> None:
+            super().__init__('title', text)
+
 
     # Sectioning root
             
@@ -284,11 +294,77 @@ class Tags:
     class q(Tag):
         def __init__(self:Self, text:str='', cite:str='') -> None:
             super().__init__('q', text)
-            self.attrtute('cite', cite)
+            self.attributes('cite', cite)
+
+    class rp(Tag):
+        def __init__(self:Self, text:str='') -> None:
+            super().__init__('rp', text)
+
+    class rt(Tag):
+        def __init__(self:Self, text:str='') -> None:
+            super().__init__('rt', text)
+
+    class ruby(Tag):
+        def __init__(self:Self, text:str='') -> None:
+            super().__init__('ruby', text)
+
+    class s(Tag):
+         def __init__(self:Self, text:str='') -> None:
+            super().__init__('s', text)
+
+    class samp(Tag):
+         def __init__(self:Self, text:str='') -> None:
+            super().__init__('samp', text)
+
+    class small(Tag):
+         def __init__(self:Self, text:str='') -> None:
+            super().__init__('small', text)
 
     class span(Tag):
         def __init__(self:Self, text:str='') -> None:
             super().__init__('span', text)
+
+    class strong(Tag):
+        def __init__(self:Self, text:str='') -> None:
+            super().__init__('strong', text)
+
+    class sub(Tag):
+        def __init__(self:Self, text:str='') -> None:
+            super().__init__('sub', text)
+
+    class sup(Tag):
+        def __init__(self:Self, text:str='') -> None:
+            super().__init__('sup', text)
+
+    class time(Tag):
+        def __init__(self:Self, text:str='', date_time:str='') -> None:
+            super().__init__('time', text)
+            self.attr('datetime', date_time)
+
+    class u(Tag):
+        def __init__(self:Self, text:str='') -> None:
+            super().__init__('u', text)
+
+    class var(Tag):
+        def __init__(self:Self, text:str='') -> None:
+            super().__init__('var', text)
+
+    class wbr(Tag):
+        def __init__(self:Self, text:str='') -> None:
+            super().__init__('wbr', text)
+
+    # Image and multimedia
+
+    class map(Tag):
+         def __init__(self:Self, name:str='') -> None:
+            super().__init__('map')
+            self.attr('name', name)
+
+    class area(Tag):
+        pass # Will be added later, too many attributes
+
+    class audio(Tag):
+        pass # Will be added later, too many attributes
 
     class img(Tag):
         def __init__(self:Self, src:str='', alt:str='') -> None:
@@ -296,21 +372,123 @@ class Tags:
             self.attr('src', src)
             self.attr('alt', alt)
 
-    class table(Tag):
+    class track(Tag):
+        pass # Will be added later, too many attributes
+
+    class video(Tag):
+        pass # Will be added later, too many attributes
+
+    # Embedded content
+
+    class embed(Tag):
+        def __init__(self:Self, type:str='', src:str='', width:str='', height:str='') -> None:
+            super().__init__('embed')
+            self.attr('type', type)
+            self.attr('src', src)
+            self.attr('width', width)
+            self.attr('height', height)
+
+    class iframe(Tag):
+        pass # Will be added later, too many attributes
+
+    class object(Tag):
+        pass # Will be added later, too many attributes
+
+    class picture(Tag):
+        def __init__(self:Self) -> None:
+            super().__init__('picture')
+
+    class portal(Tag):
+        def __init__(self:Self, text:str='', src:str='', referrer_policy:str='') -> None:
+            super().__init__('portal', text)
+            self.attr('src', src)
+            self.attr('referrerpolicy', referrer_policy)
+
+    class source(Tag):
+        pass # Will be added later, too many attributes
+
+    # SVG and MathML
+
+    class svg(Tag):
+        pass # Will be added later, too many attributes
+
+    class math(Tag):
+         def __init__(self:Self, text:str='') -> None:
+            super().__init__('math', text)
+
+    # Scripting
+
+    class canvas(Tag):
+         def __init__(self:Self, text:str='', width:str='', height:str='', moz_opaque:str='') -> None:
+            super().__init__('canvas', text)
+            self.attr('width', width)
+            self.attr('height', height)
+            self.attr('moz-opaque', moz_opaque)
+
+    class noscript(Tag):
+         def __init__(self:Self) -> None:
+            super().__init__('noscript')
+
+    class script(Tag):
+        pass # Will be added later, too many attributes
+
+    # Demarcating edits
+
+    class _del(Tag): # Problem here
+        pass
+
+    class ins(Tag):
+        def __init__(self:Self, text:str='', cite:str='', date_time:str='') -> None:
+            super().__init__('ins', text)
+            self.attr('cite', cite)
+            self.attr('datetime', date_time)
+
+    # Table content
+
+    class caption(Tag):
         def __init__(self:Self, text:str='') -> None:
-            super().__init__('table', text)
+            super().__init__('caption', text)
+
+    class col(Tag):
+        def __init__(self:Self, text:str='', span:str='') -> None:
+            super().__init__('col', text)
+            self.attr('span', span)
+
+    class colgroup(Tag):
+        def __init__(self:Self, text:str='', span:str='') -> None:
+            super().__init__('colgroup', text)
+            self.attr('span', span)
+
+    class table(Tag):
+            def __init__(self:Self, text:str='') -> None:
+                super().__init__('table', text)
+
+    class tbody(Tag):
+        def __init__(self:Self, text:str='') -> None:
+            super().__init__('tbody', text)
+
+    class td(Tag):
+        def __init__(self:Self, text:str='') -> None:
+            super().__init__('td', text)
+
+    class th(Tag):
+        def __init__(self:Self, text:str='', scope:str='') -> None:
+            super().__init__('th', text)
+            self.attr('scope', scope)
 
     class tr(Tag):
         def __init__(self:Self, text:str='') -> None:
             super().__init__('tr', text)
 
-    class th(Tag):
+     class thead(Tag):
         def __init__(self:Self, text:str='') -> None:
-            super().__init__('th', text)
+            super().__init__('thead', text)
 
-    class td(Tag):
+    class tfoot(Tag):
         def __init__(self:Self, text:str='') -> None:
-            super().__init__('td', text)
+            super().__init__('tfoot', text)
+
+    # Forms (incomplete)
 
     class form(Tag):
         def __init__(self:Self, text:str='') -> None:
