@@ -1,7 +1,5 @@
 # phyal
 
-[![Static Badge](https://img.shields.io/badge/Contributors-2-blue)](https://img.shields.io/badge/Contributor-3-4?style=flat&color=blue)
-
 Quickly build websites without the hassle of HTML
 ___
 
