@@ -1,3 +1,5 @@
+# © 2024 SalladShooter
+
 from typing import Callable
 from typing_extensions import Self # required for versions <3.11
 from werkzeug.exceptions import HTTPException, NotFound
