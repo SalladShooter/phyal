@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "phyal"
-version = "0.3.0"
+version = "0.3.1"
 description = "A simple to use Framework with a Python syntax that can replace HTML in a comfortable and easy way."
 authors = ["SalladShooter <139503084+SalladShooter@users.noreply.github.com>"]
 license = "MIT"
