@@ -25,12 +25,10 @@ def index(request):
 
 and now you can add links to other files like `JavaScript` and `CSS` ->
 ```py
-css_link = '<link rel="stylesheet" type="text/css" href="/static/style.css">'
-js_link = '<script src="/static/script.js"></script>'
+css_link = Tags.link().attr('href', '/static/style.css').attr('rel', 'stylesheet')
+js_script = Tags.script().attr('src', '/static/script.js')
 
-html_content = [
-    css_link, js_link
-]
+html_content = str()
 ```
 
 Outside of your route you need to allow the file to be ran ->
@@ -49,15 +47,14 @@ phyal components go hand in hand with HTML elements but are written in the Pytho
 
 You can use an element by setting up an advised `html_content` list ->
 ```py
-html_content = [
-    css_link, js_link,
-    str(Tag()) # Element
-]
+html_content = str(
+    Tags.#element
+)
 ```
 
 you can then add your element (currently select few, but most/all elements will be added eventually) to the line, for example the paragraph element or `<p>` ->
 ```py
-str(Tag('p', 'Hello World'))
+Tags.p('Hello, world!')
 ```
 
 
@@ -66,39 +63,34 @@ str(Tag('p', 'Hello World'))
 
 Then you can add `attributes`, things like `HREF`'s `SRC`'s `ALT`'s would fall in this category. You would add `.attribute(# attribute())` to your line, for example an `<a>` tag ->
 ```py
-str(Tag('a', 'Link', href='https://google.com'))
+Tags.a('Link').attr('href', 'https://google.com')
 ```
 
 You can use the phyal framework along side things like `JavaScript` and `CSS` and add ID's like so `.id('')`, for example with a `<p>` tag ->
 ```py
-str(Tag('p', 'Hello World', id='my_id'))
+Tags.p('Hello, world!').id('my_id')
 ```
 
 You can also add children to the elements in a hireachy system like HTML like so `.add_children(Tags.) # Element`, for example a `<p>` tag ->
 ```py
-str(Tag('p', 'Hello World', children=[
-    Tag('div', children=[
-        # Add more children here if needed
-    ])
-]))
+Tags.div().id('container').child(
+    Tags.h1('Title').id('title'),
+    # Add more children here if needed
+)
 ```
 
 ___
 
 ### Running
 
-Once you have written out your code with phyal you can either write it where it runs once or runs continuously (harder on preformance, but works with JS better)
-
-#### Single Use
+Once you have written out your code with phyal you can use it along side JavaScript with some simple scripting or just run your code.
 
 ```py
+app.reload_content([html_content])
 return Response(html_content, content_type='text/html')
 ```
+___
 
-#### Continuously
+# Contributors
 
-```py
-while True:
-    app.reload_content(html_content)
-    return Response(html_content, content_type='text/html')
-```
+Thank you so much to those that have contributed, you have been a big help in this process!
