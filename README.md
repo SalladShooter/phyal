@@ -78,3 +78,7 @@ Tags.div().id('container').child(
 )
 ```
 Now that you have mastered the phyal syntax you should be able to use phyal to it‘s largest potential, if you come across any errors make sure to create an issue [here](https://github.com/SalladShooter/phyal/issues).
+
+___
+
+**GitHub Integrations** <img src="github-mark-white.png" width="25" height="25" styles="justify-content: center; center-items: center;">
