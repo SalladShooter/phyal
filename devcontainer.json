@@ -1,0 +1,12 @@
+{
+    "name": "Phyal Development Environment",
+    "build": {
+      "dockerfile": "Dockerfile"
+    },
+    "forwardPorts": [],
+    "postCreateCommand": "echo 'Codespace ready!'",
+    "remoteEnv": {
+      "PAT_TOKEN": "${localEnv:PAT_TOKEN}"
+    }
+}
+  
