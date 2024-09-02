@@ -1,5 +1,7 @@
 # © 2024 SalladShooter
 
+from github import Github
+import os
 from typing import Callable
 from typing_extensions import Self # required for versions <3.11
 from werkzeug.exceptions import HTTPException, NotFound
@@ -7,6 +9,25 @@ from werkzeug.middleware.shared_data import SharedDataMiddleware
 from werkzeug.routing import Map, Rule
 from werkzeug.serving import run_simple
 from werkzeug.wrappers import Request, Response
+
+class Github:
+    def __init__(self:Self) -> None:
+        self.token = os.getenv('PAT_TOKEN')
+        self.repo_name = "SalladShooter/phyal"
+        self.g = Github(self.token)
+        self.repo = self.g.get_repo(self.repo_name)
+    
+    def name(self):
+        print(f"Repo Name: {self.repo.full_name}")
+    
+    def desc(self):
+        print(f"Description: {self.repo.description}")
+
+    def stars(self):
+        print(f"Stars: {self.repo.stargazers_count}")
+
+    def forks(self):
+        print(f"Forks: {self.repo.forks_count}")
 
 class App:
     def __init__(self:Self) -> None:
