@@ -1,6 +1,8 @@
-from src.framework import App, Response, Tags
+from src.framework import Github, App, Response, Tags
 
 app = App()
+
+Github.name()
 
 @app.route('/')
 def index(request):
